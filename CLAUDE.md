@@ -16,7 +16,7 @@
 
 Schnellste Methode für Cookie-Extraktion:
 ```
-Cmd+Option+E → Cmd+R → Rechtsklick → Copy as cURL → hier einfügen
+Cmd+Option+E → "batchexecute" filtern → Cmd+R → Rechtsklick → Copy as cURL → hier einfügen
 ```
 
 Oder `/auth` Command verwenden für detaillierte Anleitung.

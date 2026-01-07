@@ -2,31 +2,22 @@
 
 Schnelles Setup für NotebookLM MCP Server mit Claude Code.
 
-## Installation
-
-### 1. NotebookLM MCP installieren
+## Installation (Ein Befehl)
 
 ```bash
-# Via Homebrew (empfohlen)
-brew install jxnl/tap/notebooklm-mcp
-
-# Oder via pipx
-pipx install notebooklm-mcp
+claude mcp add notebooklm-mcp -- npx -y notebooklm-mcp
 ```
 
-### 2. MCP Server zu Claude Code hinzufügen
+Fertig! Der MCP Server wird automatisch via npx installiert und gestartet.
 
-```bash
-claude mcp add notebooklm-mcp /opt/homebrew/bin/notebooklm-mcp
-```
-
-### 3. Authentifizierung
+## Authentifizierung
 
 1. Öffne https://notebooklm.google.com (eingeloggt)
 2. `Cmd+Option+E` (öffnet DevTools Network Tab)
-3. `Cmd+R` (Seite neu laden)
-4. Rechtsklick auf einen Request → **Copy as cURL**
-5. In Claude Code einfügen
+3. Tippe `batchexecute` im Filter-Feld (filtert unwichtige Requests raus)
+4. `Cmd+R` (Seite neu laden)
+5. Rechtsklick auf den `batchexecute` Request → **Copy as cURL**
+6. In Claude Code einfügen
 
 ## Verwendung
 
