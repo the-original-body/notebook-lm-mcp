@@ -38,4 +38,4 @@ Nach der Authentifizierung stehen folgende Befehle zur Verfügung:
 ## Links
 
 - [NotebookLM](https://notebooklm.google.com)
-- [Original MCP Repo](https://github.com/jxnl/notebooklm-mcp)
+- [Original MCP Repo](https://github.com/jacob-bd/notebooklm-mcp)
