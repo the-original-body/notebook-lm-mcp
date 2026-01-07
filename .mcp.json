@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "notebooklm-mcp": {
+      "type": "stdio",
+      "command": "/opt/homebrew/bin/notebooklm-mcp",
+      "args": [],
+      "env": {}
+    }
+  }
+}
