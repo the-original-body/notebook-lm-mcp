@@ -39,40 +39,56 @@
 12. Claude fügt alle Reports als Drive-Quellen hinzu via `notebook_add_drive`
 13. Bestätigung: "X Reports wurden als Quellen hinzugefügt"
 
-### PHASE 5: Slidedeck-Prompt via NotebookLM Chat
-14. Claude fragt NotebookLM Chat via `notebook_query`:
-    ```
-    Basierend auf dem Video-Skript [TITEL] und den X erstellten Reports, erstelle einen Slidedeck-Prompt.
+### PHASE 5: Slidedeck-Prompt schreiben (CLAUDE SELBST!)
 
-    Der Prompt soll:
-    - Die Kernbotschaften aller Reports zusammenführen
-    - Eine klare didaktische Struktur vorgeben
-    - Visuelle Metaphern und Darstellungen vorschlagen
-    - Für BESTEHENDE Kunden sein (keine Verkaufssprache!)
+**WICHTIG: Das Slidedeck ist eine VERBILDLICHUNG des Video-Skripts!**
 
-    Maximale Länge: 1800 Zeichen (weil ich noch die ZWINGENDEN REGELN anhänge)
-    ```
-15. Claude ergänzt den Prompt mit den ZWINGENDEN SLIDEDECK-REGELN
-16. Claude speichert den fertigen Prompt in `video-X/prompts/slidedeck-prompt.md`
+14. **CLAUDE LIEST das VIDEO-SKRIPT** - Das Original-Skript ist die HAUPTQUELLE!
+15. **CLAUDE DENKT HART NACH** und schreibt den Slidedeck-Prompt selbst:
+    - **Das VIDEO-SKRIPT ist die PRIMÄRE QUELLE** (Reihenfolge + Inhalt folgen!)
+    - Reports und andere Quellen sind ERWEITERTE KONTEXTINFORMATIONEN
+    - Das Slidedeck VERBILDLICHT das Video-Skript
+    - Teilnehmer sollen nach dem Video das PDF anschauen und sagen: "Ah ja, das ist das, worum es im Video ging"
+    - Visualisierungen für Konzepte, die man visualisieren sollte
+    - KEINE konkreten Slide-Anweisungen ("Slide 1:...")
+    - Für BESTEHENDE Kunden (keine Verkaufssprache!)
+16. Claude fügt die ZWINGENDEN SLIDEDECK-REGELN an
+17. Claude speichert den fertigen Prompt in `video-X/prompts/slidedeck-prompt.md`
 
 ### PHASE 6: Slidedeck erstellen
-17. Claude erstellt das Slidedeck via `slide_deck_create`
+17. Claude erstellt das Slidedeck via `slide_deck_create` mit **length=long** (IMMER!)
 18. Claude wartet auf Fertigstellung
 19. **USER-REVIEW:** User schaut sich das Slidedeck an
 20. **ENTSCHEIDUNG:**
     - ✅ Zufrieden → Weiter zu Phase 7
     - ❌ Änderungen nötig → Zurück zu Schritt 14, neue Version erstellen
 
-### PHASE 7: Podcast Deep Dives erstellen
-21. Claude erstellt PRO REPORT einen Audio-Prompt (~2000 Zeichen)
-22. **WICHTIG - Podcast-Ziel:**
-    - Format: Deep Dive, ca. 20 Minuten, Deutsch
-    - Ziel: Anfängern SICHERHEIT geben
+### PHASE 7: Podcast Deep Dive erstellen (CLAUDE SELBST!)
+
+**WICHTIG: 1 PODCAST PRO VIDEO! NICHT pro Report!**
+
+**ZIEL des Podcasts:** VERTIEFUNG mit ALLEN Kontextinformationen!
+- Der Podcast nutzt ALLE verfügbaren Quellen (Reports, Skripte, Rohmaterial)
+- Gibt MEHR Informationen als das Video allein
+- Für Teilnehmer, die sich die Zeit nehmen wollen, tiefer einzutauchen
+- PLUS: Anfängern SICHERHEIT geben
+
+21. **CLAUDE LIEST ALLE Quellen** - Alle Reports + weitere Kontextinformationen
+22. **CLAUDE DENKT HART NACH** und schreibt EINEN Audio-Prompt pro Video (~2000 Zeichen):
+    - ALLE verfügbaren Quellen nutzen für maximale VERTIEFUNG
+    - Mehr Informationen als im Video allein
+    - **Podcast-Ziel 1: VERTIEFUNG** - tiefer eintauchen, mehr erfahren
+    - **Podcast-Ziel 2: SICHERHEIT geben** - beruhigend, ermutigend
     - Teilnehmer sollen sich SICHER und WOHL fühlen
     - Alles in der TIEFE verstehen können
     - Keine Hektik, kein Druck
-23. Claude speichert Prompts in `video-X/prompts/audio-X-prompt.md`
-24. Claude erstellt alle Podcasts via `audio_overview_create` (format=deep_dive, length=long, language=de)
+23. Claude fügt die ZWINGENDEN PODCAST-REGELN an
+24. Claude speichert den Prompt in `video-X/prompts/audio-prompt.md` (EINER pro Video!)
+25. Claude erstellt den Podcast via `audio_overview_create`:
+    - `source_ids` = ALLE Report-IDs des Videos (für Vertiefung)
+    - `format=deep_dive`
+    - `length=long`
+    - `language=de`
 
 ### PHASE 8: Dokumentation
 25. Claude aktualisiert `REQUEST-TRACKER.md` mit allen IDs
@@ -94,6 +110,7 @@
    - Report-Prompts: IMMER knapp unter 2000 Zeichen (max erlaubt: 2000)
    - Slidedeck-Prompts: IMMER knapp unter 2000 Zeichen
    - Audio-Prompts: IMMER knapp unter 2000 Zeichen
+   - **ZIEL: So NAHE wie möglich an 2000 Zeichen (1800-2000 ideal)**
    - Kurze Prompts = schlechte Ergebnisse
 
 4. **NIEMALS Slidedeck-Prompts OHNE die zwingenden Regeln!**
@@ -103,9 +120,26 @@
    - NotebookLM Chat entscheidet Anzahl und Themen der Reports
    - Claude fragt IMMER via `notebook_query` nach
 
-6. **NIEMALS Slidedeck-Prompt selbst schreiben!**
-   - NotebookLM Chat erstellt den Basis-Prompt
-   - Claude ergänzt NUR die zwingenden Regeln
+6. **NIEMALS Slidedeck/Podcast-Prompts ohne Reports zu LESEN!**
+   - Claude MUSS die Reports in den Kontext holen (LESEN!)
+   - Claude schreibt die Prompts SELBST mit hartem Nachdenken
+   - NotebookLM Chat wird NICHT für Prompts gefragt
+
+7. **NIEMALS konkrete Slide-Anweisungen in Slidedeck-Prompts!**
+   - KEINE "Slide 1: ..., Slide 2: ..." Vorgaben
+   - Der Prompt erzählt die VISION und die GROSSE GESCHICHTE
+   - Die emotionale Reise des Teilnehmers
+   - Der Slide-Agent entscheidet selbst über die konkrete Slide-Struktur
+
+8. **NIEMALS Slidedecks mit length=default oder length=short erstellen!**
+   - `slide_deck_create` IMMER mit `length=long` aufrufen
+   - Slidedecks sollen die MAXIMALE Länge haben
+
+9. **NIEMALS mehrere Podcasts pro Video erstellen!**
+   - Es gibt IMMER nur 1 Podcast pro Video (~20 Min)
+   - Der Podcast fasst ALLE Reports des Videos zusammen
+   - NICHT: 1 Podcast pro Report (das wäre FALSCH!)
+   - Dateiname: `audio-prompt.md` (NICHT `audio-1-prompt.md`, `audio-2-prompt.md`...)
 
 ---
 
@@ -127,6 +161,7 @@ ZWINGENDE REGELN FÜR DIESES SLIDE DECK:
 10. Die Verwendung von Visualisierungen und Darstellungen ist generell Positiv. Keine Darstellungen von "Yoga, Pilates,..."
 11. Unsere Firma heißt "The Original Body AG" Du darfst das in Slides erwähnen.
 12. NIEMALS NIEMALS NIEMALS gib den Titel einer Schriftart als Text auf einer Slide aus. Kontrolliere jedes Wort auf den Slides, bevor Du weiter verfährst
+13. VERBOTEN: Das Wort "Heilung" - nutze stattdessen "Gesundheit" oder "Regeneration"
 ```
 
 ---
@@ -149,6 +184,7 @@ ZWINGENDE REGELN FÜR DIESEN PODCAST:
 10. Schließe mit einer ermutigenden Zusammenfassung
 11. Sprache: Deutsch, Du-Form (Du/Dir/Dein groß)
 12. Länge: ca. 20 Minuten Deep Dive
+13. VERBOTEN: Das Wort "Heilung" - nutze stattdessen "Gesundheit" oder "Regeneration"
 ```
 
 ---
@@ -166,16 +202,26 @@ ZWINGENDE REGELN FÜR DIESEN PODCAST:
 - [ ] Keine verkäufliche Sprache?
 - [ ] Auf SICHERHEIT und VERSTÄNDNIS fokussiert?
 
-### Checkliste: Slidedeck erstellen
+### Checkliste: Slidedeck erstellen (VERBILDLICHUNG des Videos!)
 - [ ] Alle Reports als Google Docs Quellen hinzugefügt?
-- [ ] Slidedeck-Prompt von NotebookLM Chat erstellt?
-- [ ] ZWINGENDE REGELN Block eingefügt?
+- [ ] **VIDEO-SKRIPT ist die PRIMÄRE QUELLE?**
+- [ ] **Slidedeck folgt Reihenfolge + Inhalt des Video-Skripts?**
+- [ ] **Slidedeck-Prompt SELBST geschrieben (mit hartem Nachdenken)?**
+- [ ] Reports als erweiterte Kontextinformationen (nicht Hauptquelle)?
+- [ ] KEINE konkreten Slide-Anweisungen im Prompt (keine "Slide 1:")?
+- [ ] Visualisierungen für Konzepte aus dem Video?
+- [ ] **ZWINGENDE REGELN Block eingefügt?**
 - [ ] Prompt in `video-X/prompts/slidedeck-prompt.md` gespeichert?
+- [ ] `length=long` bei `slide_deck_create`?
 
-### Checkliste: Podcasts erstellen
-- [ ] Pro Report ein Audio-Prompt?
+### Checkliste: Podcast erstellen (VERTIEFUNG - 1 PRO VIDEO!)
+- [ ] **ALLE Quellen genutzt?** (Reports, Skripte, Rohmaterial für Vertiefung)
+- [ ] **EIN Audio-Prompt pro Video SELBST geschrieben (mit hartem Nachdenken)?**
+- [ ] **NUR 1 Prompt-Datei: `audio-prompt.md` (NICHT audio-1, audio-2...)?**
+- [ ] **Ziel 1: VERTIEFUNG** - mehr Informationen als im Video allein?
+- [ ] **Ziel 2: SICHERHEIT** - beruhigend, ermutigend für Anfänger?
 - [ ] ZWINGENDE PODCAST-REGELN Block eingefügt?
-- [ ] Fokus auf SICHERHEIT für Anfänger?
+- [ ] `source_ids` = alle Report-IDs des Videos?
 - [ ] format=deep_dive, length=long, language=de?
 
 ---
@@ -210,8 +256,7 @@ arthrose-blueprint/
 │   │   ├── report-2-prompt.md
 │   │   ├── ...
 │   │   ├── slidedeck-prompt.md
-│   │   ├── audio-1-prompt.md
-│   │   └── ...
+│   │   └── audio-prompt.md       # NUR EINER pro Video! (fasst alle Reports zusammen)
 │   ├── reports/                   # Optional: Lokale Kopien
 │   └── slidedecks/                # Optional: PDFs
 ```
@@ -228,16 +273,36 @@ arthrose-blueprint/
 - KEINE Verkaufssprache
 
 ### Slidedeck-Prompts (~2000 Zeichen)
-- Von NotebookLM Chat erstellt (Basis ~1800 Zeichen)
-- Claude ergänzt ZWINGENDE REGELN (~200 Zeichen)
-- Didaktische Struktur
-- Visuelle Metaphern
 
-### Audio-Prompts (~2000 Zeichen)
+**ZIEL: VERBILDLICHUNG des Video-Skripts!**
+
+- **CLAUDE schreibt den Prompt SELBST (NICHT NotebookLM Chat fragen!)**
+- **Das VIDEO-SKRIPT ist die PRIMÄRE QUELLE!**
+  - Das Slidedeck folgt der Reihenfolge und dem Inhalt des Video-Skripts
+  - Teilnehmer sollen nach dem Video das PDF anschauen und sagen: "Ah ja, das ist das, worum es im Video ging"
+  - Das Slidedeck VERBILDLICHT das Video
+- Reports und andere Quellen sind ERWEITERTE KONTEXTINFORMATIONEN
+  - Sie helfen, das Ganze "supergeil" darzustellen
+  - Aber die STRUKTUR kommt vom Video-Skript
+- KEINE konkreten Slide-Anweisungen (keine "Slide 1:", "Slide 2:")
+- Visuelle Metaphern für Konzepte aus dem Video
+- **Bei `slide_deck_create`: IMMER `length=long`!**
+
+### Audio-Prompts (~2000 Zeichen) - NUR EINER PRO VIDEO!
+
+**ZIEL: VERTIEFUNG mit allen Kontextinformationen!**
+
+- **1 PODCAST PRO VIDEO! NICHT pro Report!**
+- **CLAUDE schreibt den Prompt SELBST (NICHT NotebookLM Chat fragen!)**
+- **ALLE Quellen nutzen** - Reports, Skripte, Rohmaterial für maximale VERTIEFUNG
+- Der Podcast gibt MEHR Informationen als das Video allein
+- Für Teilnehmer, die tiefer eintauchen wollen
+- **Podcast-Ziel 1: VERTIEFUNG** - mehr erfahren, tiefer verstehen
+- **Podcast-Ziel 2: SICHERHEIT** - beruhigend, ermutigend
 - ZWINGENDE PODCAST-REGELN einfügen
-- Fokus: SICHERHEIT für Anfänger
 - Ca. 20 Minuten Deep Dive
 - Beruhigend, ermutigend, keine Hektik
+- **Dateiname: `audio-prompt.md` (NICHT `audio-1-prompt.md`!)**
 
 ---
 
