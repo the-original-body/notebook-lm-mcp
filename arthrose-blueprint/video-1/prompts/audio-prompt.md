@@ -40,3 +40,5 @@ ZWINGENDE REGELN FÜR DIESEN PODCAST:
 11. Sprache: Deutsch, Du-Form (Du/Dir/Dein groß)
 12. Länge: ca. 20 Minuten Deep Dive
 13. VERBOTEN: Das Wort "Heilung" - nutze stattdessen "Gesundheit" oder "Regeneration"
+14. VERBOTEN: Über "Reports" sprechen! NIEMALS erwähnen, dass es Reports gibt!
+15. PFLICHT-EINSTIEG: Am Anfang sagen: "Du hast das Video 'Einführung und Richtlinien der Programmbenutzung' geschaut und jetzt sprechen wir darüber nochmal in der Tiefe."

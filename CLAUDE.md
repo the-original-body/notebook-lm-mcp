@@ -2,6 +2,33 @@
 
 ---
 
+## VIDEO-SKRIPTE UND IHRE TITEL (WICHTIG!)
+
+**Jedes Video-Skript hat einen INHALTLICHEN TITEL (nicht "Skript X Woche Y")!**
+
+Die Titel findest Du in der Überschrift jedes Skripts im Google Doc "Skripte Modulvideos Arthrose Blueprint":
+
+| Skript | Woche | INHALTLICHER TITEL (für Prompts verwenden!) |
+|--------|-------|---------------------------------------------|
+| Skript 0 | - | Einführung und Richtlinien der Programmbenutzung |
+| Skript 1 | Woche 1 | Zielgerichtetes Tensegrity-basiertes Mechanotransduktionstraining |
+| Skript 2 | Woche 1 | Selbstmassage - Einführung und Grundlagen |
+| Skript 3 | Woche 1 | Spiralsystem - Die Grundlage verstehen |
+| Skript 4 | Woche 1 | Exzentrisch stehen |
+
+**REGELN für Titel:**
+- NIEMALS "Skript X" oder "Woche Y" im Titel verwenden
+- NIEMALS "Praxisvideo" im Titel
+- NUR den inhaltlichen Titel aus der Überschrift des Skripts
+- Der Titel beschreibt den INHALT, nicht die Struktur
+
+**Diese Titel werden verwendet für:**
+1. **Slidedeck-Prompts:** Das Slidedeck verbildlicht dieses Video
+2. **Podcast-Prompts:** "Du hast das Video '[TITEL]' geschaut..."
+3. **Report-Themen:** Die Reports vertiefen die Inhalte dieses Videos
+
+---
+
 ## DER MASTER-WORKFLOW (IMMER BEFOLGEN!)
 
 **Dieser Workflow ist VERBINDLICH für jedes neue Video-Skript.**
@@ -56,7 +83,11 @@
 17. Claude speichert den fertigen Prompt in `video-X/prompts/slidedeck-prompt.md`
 
 ### PHASE 6: Slidedeck erstellen
-17. Claude erstellt das Slidedeck via `slide_deck_create` mit **length=long** (IMMER!)
+17. Claude erstellt das Slidedeck via `slide_deck_create`:
+    - **`source_ids=null`** (ALLE Quellen nutzen! NIEMALS explizite IDs!)
+    - `length=default`
+    - `language=de`
+    - `focus_prompt` = der geschriebene Slidedeck-Prompt
 18. Claude wartet auf Fertigstellung
 19. **USER-REVIEW:** User schaut sich das Slidedeck an
 20. **ENTSCHEIDUNG:**
@@ -85,10 +116,11 @@
 23. Claude fügt die ZWINGENDEN PODCAST-REGELN an
 24. Claude speichert den Prompt in `video-X/prompts/audio-prompt.md` (EINER pro Video!)
 25. Claude erstellt den Podcast via `audio_overview_create`:
-    - `source_ids` = ALLE Report-IDs des Videos (für Vertiefung)
+    - **`source_ids=null`** (ALLE Quellen nutzen! NIEMALS explizite IDs!)
     - `format=deep_dive`
     - `length=long`
     - `language=de`
+    - `focus_prompt` = der geschriebene Audio-Prompt
 
 ### PHASE 8: Dokumentation
 25. Claude aktualisiert `REQUEST-TRACKER.md` mit allen IDs
@@ -131,8 +163,8 @@
    - Die emotionale Reise des Teilnehmers
    - Der Slide-Agent entscheidet selbst über die konkrete Slide-Struktur
 
-8. **NIEMALS Slidedecks mit length=default oder length=short erstellen!**
-   - `slide_deck_create` IMMER mit `length=long` aufrufen
+8. **NIEMALS Slidedecks mit length=short erstellen!**
+   - `slide_deck_create` mit `length=default` aufrufen (das ist die längste Option)
    - Slidedecks sollen die MAXIMALE Länge haben
 
 9. **NIEMALS mehrere Podcasts pro Video erstellen!**
@@ -140,6 +172,73 @@
    - Der Podcast fasst ALLE Reports des Videos zusammen
    - NICHT: 1 Podcast pro Report (das wäre FALSCH!)
    - Dateiname: `audio-prompt.md` (NICHT `audio-1-prompt.md`, `audio-2-prompt.md`...)
+
+10. **NIEMALS source_ids explizit setzen bei slide_deck_create oder audio_overview_create!**
+    - `source_ids` IMMER auf `null` lassen (oder Parameter weglassen)
+    - So werden ALLE Quellen im Notebook verwendet
+    - Der `focus_prompt` steuert, welche Quellen PRIORITÄT haben
+    - FALSCH: `source_ids=["id1", "id2", "id3"]` → NUR diese 3 Quellen werden genutzt!
+    - RICHTIG: `source_ids=null` → ALLE Quellen werden genutzt, focus_prompt gibt Priorität
+
+11. **NIEMALS in Podcasts über "Reports" sprechen!**
+    - Das Wort "Report" darf NIEMALS im Podcast erwähnt werden
+    - Teilnehmer wissen nichts von Reports - das ist interne Dokumentation
+    - Stattdessen: "Du hast das Video '[TITEL]' geschaut..." als Einstieg
+
+12. **NIEMALS "Skript X" oder "Woche Y" als Video-Titel verwenden!**
+    - IMMER den INHALTLICHEN Titel aus der Skript-Überschrift nehmen
+    - FALSCH: "Skript 1 Woche 1", "Praxisvideo", "Skript 0"
+    - RICHTIG: "Einführung und Richtlinien der Programmbenutzung", "Zielgerichtetes Tensegrity-basiertes Mechanotransduktionstraining"
+    - Siehe Tabelle oben für alle korrekten Titel!
+
+---
+
+## ARTHROSE BLUEPRINT - VISUELLER STIL (IMMER KOPIEREN)
+
+**Dieser Stil-Block MUSS in JEDEN Slidedeck-Prompt kopiert werden:**
+
+```
+VISUELLER STIL - ARTHROSE BLUEPRINT:
+
+FARBPALETTE:
+- Hintergrund: Warmes Beige/Creme (wie #F5F3EE)
+- Primärfarbe Text: Dunkles Marineblau (wie #1A2B4A)
+- Akzentfarbe: Goldgelb/Senfgelb (wie #C9A227) - für Nummern, Trennlinien, Highlights, Kurven, Häkchen
+- Signalfarbe: Rot (wie #E63946) NUR für "Falsch/Verboten"-Kreuze (X)
+- KEINE anderen Farben verwenden!
+
+TYPOGRAFIE:
+- Überschriften: Bold, Sans-Serif, sehr groß, Marineblau
+- Fließtext: Regular Sans-Serif, Marineblau
+- Nummern (1, 2, 3...): Extra Bold, Goldgelb, sehr groß als Blickfang
+- Zitate: Kursiv, Marineblau, in Anführungszeichen
+
+ICONS & GRAFIKEN:
+- Stil 1: Line-Art Icons (Outline-Stil) - Marineblau mit Goldgelb-Akzenten
+- Stil 2: Stilisierte flächige Illustrationen (abstrakt) - NUR Marineblau + Goldgelb als Füllfarben
+- Diagramme/Kurven: Goldgelbe Linien mit Marineblau-Beschriftung (z.B. "Tal der Tränen"-Kurve)
+- Komplexität: Einfach, klar, minimalistisch
+- KEINE fotorealistischen Bilder, KEINE Fotos von Menschen
+
+HINTERGRUND-ELEMENTE:
+- Dezente Architektur-Linienzeichnungen (Bauplan-Stil) - passend zum "Blueprint"-Thema
+- Geometrische Strukturen (feine graue Linien, Würfel, Gebäude-Querschnitte)
+- Immer sehr dezent/transparent, nie ablenkend
+
+LAYOUT:
+- Viel Weißraum (nicht überladen!)
+- Klare visuelle Hierarchie
+- Goldgelbe horizontale Trennlinien als Akzente
+- Zentriert oder linksbündig, konsistent innerhalb einer Slide
+- Vergleiche: Links "Falsch" (mit rotem X), Rechts "Richtig" (mit goldenem Häkchen)
+
+VERBOTEN IM STIL:
+- Bunte Farben außerhalb der Palette (kein Grün, Blau, Lila, Orange...)
+- Fotos oder fotorealistische Grafiken
+- Überladene Slides mit zu viel Text
+- Yoga/Pilates-Darstellungen
+- 3D-Renderings
+```
 
 ---
 
@@ -185,6 +284,8 @@ ZWINGENDE REGELN FÜR DIESEN PODCAST:
 11. Sprache: Deutsch, Du-Form (Du/Dir/Dein groß)
 12. Länge: ca. 20 Minuten Deep Dive
 13. VERBOTEN: Das Wort "Heilung" - nutze stattdessen "Gesundheit" oder "Regeneration"
+14. VERBOTEN: Über "Reports" sprechen! NIEMALS erwähnen, dass es Reports gibt!
+15. PFLICHT-EINSTIEG: Am Anfang sagen: "Du hast das Video '[VIDEO-TITEL]' geschaut und jetzt sprechen wir darüber nochmal in der Tiefe."
 ```
 
 ---
@@ -212,7 +313,8 @@ ZWINGENDE REGELN FÜR DIESEN PODCAST:
 - [ ] Visualisierungen für Konzepte aus dem Video?
 - [ ] **ZWINGENDE REGELN Block eingefügt?**
 - [ ] Prompt in `video-X/prompts/slidedeck-prompt.md` gespeichert?
-- [ ] `length=long` bei `slide_deck_create`?
+- [ ] **`source_ids=null` bei `slide_deck_create`?** (ALLE Quellen nutzen!)
+- [ ] `length=default` bei `slide_deck_create`?
 
 ### Checkliste: Podcast erstellen (VERTIEFUNG - 1 PRO VIDEO!)
 - [ ] **ALLE Quellen genutzt?** (Reports, Skripte, Rohmaterial für Vertiefung)
@@ -221,7 +323,7 @@ ZWINGENDE REGELN FÜR DIESEN PODCAST:
 - [ ] **Ziel 1: VERTIEFUNG** - mehr Informationen als im Video allein?
 - [ ] **Ziel 2: SICHERHEIT** - beruhigend, ermutigend für Anfänger?
 - [ ] ZWINGENDE PODCAST-REGELN Block eingefügt?
-- [ ] `source_ids` = alle Report-IDs des Videos?
+- [ ] **`source_ids=null` bei `audio_overview_create`?** (ALLE Quellen nutzen!)
 - [ ] format=deep_dive, length=long, language=de?
 
 ---
@@ -286,7 +388,7 @@ arthrose-blueprint/
   - Aber die STRUKTUR kommt vom Video-Skript
 - KEINE konkreten Slide-Anweisungen (keine "Slide 1:", "Slide 2:")
 - Visuelle Metaphern für Konzepte aus dem Video
-- **Bei `slide_deck_create`: IMMER `length=long`!**
+- **Bei `slide_deck_create`: IMMER `source_ids=null` und `length=default`!**
 
 ### Audio-Prompts (~2000 Zeichen) - NUR EINER PRO VIDEO!
 
@@ -303,6 +405,7 @@ arthrose-blueprint/
 - Ca. 20 Minuten Deep Dive
 - Beruhigend, ermutigend, keine Hektik
 - **Dateiname: `audio-prompt.md` (NICHT `audio-1-prompt.md`!)**
+- **Bei `audio_overview_create`: IMMER `source_ids=null`!**
 
 ---
 
