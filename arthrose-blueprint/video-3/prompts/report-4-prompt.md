@@ -1,37 +1,37 @@
-# Report 4 - Video 3: Selbstmassage und Bewegungskorrektur
+# Report-Prompt: Dein Praxis-Guide
 
-**Titel:** RQ-0016__RP-04v1 - Vorbereitung statt Ersatz: Wie Selbstmassage den Weg für echte Veränderung ebnet
+**Video:** Selbstmassage - Einführung und Grundlagen
+**Report:** 4 von 4
 
-**Prompt (1992 Zeichen):**
+---
 
-Erstelle einen Report für Arthrose Blueprint Teilnehmer, der den Zusammenhang zwischen Selbstmassage und Bewegungskorrektur erklärt. BESTEHENDE KUNDEN - keine Verkaufssprache!
+Erstelle einen tiefgehenden Report zum Thema "Dein Praxis-Guide: Werkzeuge und die 3 Goldenen Regeln der Sicherheit" für Teilnehmer des Arthrose Blueprint Programms.
 
-THEMA: Warum Selbstmassage die Bewegungsarbeit vorbereitet, aber niemals ersetzt - und was "die tiefste Form der Selbstmassage ist die korrekte Bewegung" bedeutet
+KERNFRAGE: Wie setze ich die Selbstmassage sicher und effektiv um?
 
 STRUKTUR:
-1. **Das Missverständnis** - Viele denken: "Wenn ich genug massiere, wird alles gut." Warum das zu kurz greift.
+1. Die drei Werkzeuge: Stelle die drei Haupttools vor und erkläre ihre spezifischen Anwendungsbereiche:
+   - Lacrosse-Ball: Für kleinere, tiefere Punktarbeit (z.B. Fußsohle, Gesäß)
+   - Slam-Ball: Für größere Flächen und sanfteren Druck
+   - Haken/Cane: Für schwer erreichbare Stellen (z.B. Rücken, Schulterblätter)
+   Erkläre, wann welches Tool am besten geeignet ist und warum.
 
-2. **Was Selbstmassage KANN:**
-   - Gewebe empfänglicher machen für neue Bewegungsmuster
-   - Akute Spannungen reduzieren
-   - Das Nervensystem auf Veränderung vorbereiten
-   - Einen "Raum" schaffen, in dem Bewegung leichter wird
+2. Goldene Regel 1 - Passivität: Erkläre das Prinzip "Die Schwerkraft macht die Arbeit". Der Teilnehmer soll nicht aktiv drücken, reiben oder rollen, sondern sich auf das Tool sinken lassen. Erkläre WARUM Passivität so wichtig ist (Nervensystem entspannt nur, wenn keine Anstrengung).
 
-3. **Was Selbstmassage NICHT kann:**
-   - Bewegungsmuster dauerhaft verändern
-   - Die eigentliche Ursache der Spannung beheben
-   - Die Arbeit der Spiralsystem-Sessions ersetzen
+3. Goldene Regel 2 - Rehydration: Erkläre die Wichtigkeit von Wassertrinken vor, während und nach der Massage. Das Gewebe soll sich wieder vollsaugen können. Gib konkrete Empfehlungen (z.B. ein großes Glas vor der Session).
 
-4. **Der Kreislauf verstehen:**
-   Spannung entsteht → Selbstmassage öffnet einen Raum → Neue Bewegung "beschreibt" diesen Raum neu → Spannung löst sich nachhaltig
+4. Goldene Regel 3 - Warnsignale beachten: Liste die klaren Stoppsignale des Nervensystems auf:
+   - Zittern oder Schütteln
+   - Übelkeit oder Schwindel
+   - Atemnot oder Herzrasen
+   Erkläre, dass diese Zeichen bedeuten: "Das ist zu viel, geh einen Schritt zurück." Keine Panik, aber ernst nehmen.
 
-5. **"Die tiefste Form der Selbstmassage"** - Wenn Du Dich korrekt bewegst, massiert sich Dein Gewebe von innen. Der Körper wird sein eigener Therapeut.
+5. Die Sicherheits-Mentalität: Gib dem Teilnehmer das Mindset mit: "Du arbeitest MIT Deinem Nervensystem, nicht GEGEN es." Weniger ist oft mehr. Die Sessions sollen herausfordernd sein, aber nicht traumatisierend.
 
-6. **Praktische Integration** - Wie Du Selbstmassage vor und nach den Sessions optimal einsetzt
+TON: Praktisch, klar, sicherheitsorientiert. Der Teilnehmer soll sich befähigt und sicher fühlen, die Übungen eigenverantwortlich durchzuführen.
 
-TONALITÄT: Aufklärend, motivierend, realistisch. Keine falschen Versprechungen, aber echte Perspektive.
+ZIELGRUPPE: Arthrose-Betroffene im Programm. Keine Verkaufssprache. Fokus auf sichere Umsetzung.
 
-METAPHER: Selbstmassage ist wie das Aufweichen von verhärtetem Boden vor dem Pflanzen. Aber erst die Pflanze (die neue Bewegung) lässt etwas wachsen.
+SPRACHE: Deutsch, Du-Form (Du/Dir/Dein groß)
 
-LÄNGE: Ausführlich, mindestens 1500 Wörter
-SPRACHE: Deutsch, Du-Form
+VERBOTEN: Das Wort "Heilung" - nutze "Regeneration" oder "Gesundheit"

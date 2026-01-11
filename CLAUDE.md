@@ -2,6 +2,69 @@
 
 ---
 
+## FUNDAMENTALE REGELN - GELTEN FÜR ALLE INHALTE
+
+**Diese Regeln sind UNVERHANDELBAR und gelten für JEDEN Output: Reports, Slidedecks, Podcasts, Prompts, Texte.**
+
+### 1. IMMER PER DU
+
+- ALLE Texte sind per DU (nie per SIE)
+- Du/Dir/Dein/Deine/Euch/Euer werden GROSS geschrieben
+- Gilt für: Reports, Slidedecks, Podcasts, Prompts, alle Kommunikation
+
+### 2. NIEMALS "DIE QUELLEN" ERWÄHNEN
+
+- Es geht IMMER um das THEMA, nicht um die Quellen
+- VERBOTEN: "Laut den Quellen...", "Die Quellen zeigen...", "Aus den Quellen geht hervor..."
+- VERBOTEN: "Im Report steht...", "Das Transkript zeigt...", "Die Dokumente sagen..."
+- Das Thema steht im Vordergrund - nicht woher die Information kommt
+- Der Zuhörer/Leser soll sich auf den INHALT konzentrieren, nicht auf Meta-Informationen
+
+### 3. IMMER IN DER WIR-FORM SPRECHEN
+
+- NIEMALS über "Justus Hirt", "Armin", "TOB" in der dritten Person sprechen
+- IMMER: "Wir bei The Original Body...", "Unser Ansatz...", "Wir haben festgestellt..."
+- VERBOTEN: "Justus sagt...", "Laut Armin...", "The Original Body empfiehlt..."
+- RICHTIG: "Wir empfehlen...", "Unser Verständnis ist...", "Wir arbeiten so..."
+- Der Sprecher/Autor IST Teil von The Original Body und spricht als WIR
+
+### 4. VERBOTENE WÖRTER (IMMER!)
+
+- **"Heilung"** → stattdessen: "Gesundheit", "Regeneration", "Verbesserung"
+- **"die Quellen"** → stattdessen: direkt über das Thema sprechen
+- **"Reports"** → Teilnehmer wissen nichts von Reports
+- **"Transkript"** → internes Dokument, nicht erwähnen
+- **"laut [Name]"** → stattdessen WIR-Form verwenden
+
+---
+
+## WICHTIG: IMMER ZUERST FRAGEN!
+
+**Bevor Claude mit einem Workflow startet, MUSS er folgende Fragen klären:**
+
+1. **Welches Notebook?** - Notebook-ID oder Name abfragen
+2. **Welche Quellen sollen verwendet werden?** - Bei Unsicherheit IMMER nachfragen
+3. **Modus bestätigen:** Video-Kurs oder Workshop?
+
+**Bei Unsicherheit IMMER Rückfragen stellen!** Lieber einmal zu viel fragen als falsche Annahmen treffen.
+
+---
+
+## ZWEI MODI: VIDEO-KURS vs. WORKSHOP
+
+Dieses Projekt hat **zwei verschiedene Workflows**:
+
+| Aspekt | `/video-kurs-lektion` | `/workshop-session-nachbereitung` |
+|--------|----------------------|-----------------------------------|
+| **Zielgruppe** | BESTEHENDE Kunden | WERBLICHE Audienz (Leads) |
+| **Primärquelle** | Video-Skript | Workshop-Transkript |
+| **Themen** | NotebookLM entscheidet (3-10) | 5 relevanteste Fragen extrahieren |
+| **Reports pro Thema** | 1 Report pro Thema | 3 Reports pro Thema (15 total) |
+| **Ton** | Keine Verkaufssprache | 80% Verkäufer-Mentalität |
+| **Kernbotschaft** | SICHERHEIT & Verständnis | PROZESS & Selbstarbeit |
+
+---
+
 ## VIDEO-SKRIPTE UND IHRE TITEL (WICHTIG!)
 
 **Jedes Video-Skript hat einen INHALTLICHEN TITEL (nicht "Skript X Woche Y")!**
@@ -89,8 +152,22 @@ Die Titel findest Du in der Überschrift jedes Skripts im Google Doc "Skripte Mo
     - `language=de`
     - `focus_prompt` = der geschriebene Slidedeck-Prompt
 18. Claude wartet auf Fertigstellung
-19. **USER-REVIEW:** User schaut sich das Slidedeck an
-20. **ENTSCHEIDUNG:**
+
+### PHASE 6b: FAKTENCHECK (NUR FÜR ARTHROSE BLUEPRINT!)
+19. **NACH Slidedeck-Erstellung:** Claude führt einen Faktencheck via `notebook_query` durch:
+    ```
+    Prüfe das erstellte Slidedeck auf inhaltliche Korrektheit:
+
+    1. Werden alle Zusammenhänge korrekt wiedergegeben?
+    2. Stimmen die Aussagen mit dem Video-Skript "[TITEL]" überein?
+    3. Gibt es Aussagen, die im Video-Skript NICHT vorkommen?
+    4. Gibt es Widersprüche zu den Kernkonzepten?
+
+    Liste alle gefundenen Unstimmigkeiten auf.
+    ```
+20. **Bei Unstimmigkeiten:** Claude informiert den User und schlägt Korrekturen vor
+21. **USER-REVIEW:** User schaut sich das Slidedeck an
+22. **ENTSCHEIDUNG:**
     - ✅ Zufrieden → Weiter zu Phase 7
     - ❌ Änderungen nötig → Zurück zu Schritt 14, neue Version erstellen
 
@@ -248,19 +325,54 @@ VERBOTEN IM STIL:
 
 ```
 ZWINGENDE REGELN FÜR DIESES SLIDE DECK:
-1. Design erfolgt NICHT über Markdown (Keine "left over" ### am Zeilenanfang)
-2. ACHTUNG: NIEMALS Schriftarten abdrucken, Fonts immer Anwenden
-3. KEINE Erfundenen Logos, Impressum oder "Letzten Seiten" mit Kontaktinformationen
-4. Verzichte auf Fotoreales Rendering, außer es wurde in dem Report DIREKT beauftragt.
-5. Nutze IMMER die maximale Länge an Slides, die möglich sind.
-6. Halte Dich STRIKT an die vorgegebene Ausgabesprache. Einzelne englische Begriffe sind zulässig, aber zu limitieren.
-7. Du bist immer per DU (nie per SIE) und schreibst Du/Dir/Deine/Euch/Euer groß.
-8. Du gibst nie eindeutige Personenbezogene Informationen aus (Nachnamen, Telefonnummern, Geburtstage, exakte Adressen). Namen kürzt Du mit dem Vornamen + erster Buchstabe des Nachnamen ab. (Armin S., Martina F.)
-9. Direkte Zitate sind prinzipiell gut, Du achtest aber darauf, dass Du keine Quellen angibst (Verboten: "Aus dem Report xy", "laut Transkript des Telefonats",...)
-10. Die Verwendung von Visualisierungen und Darstellungen ist generell Positiv. Keine Darstellungen von "Yoga, Pilates,..."
-11. Unsere Firma heißt "The Original Body AG" Du darfst das in Slides erwähnen.
-12. NIEMALS NIEMALS NIEMALS gib den Titel einer Schriftart als Text auf einer Slide aus. Kontrolliere jedes Wort auf den Slides, bevor Du weiter verfährst
-13. VERBOTEN: Das Wort "Heilung" - nutze stattdessen "Gesundheit" oder "Regeneration"
+
+FUNDAMENTALE SPRACHREGELN:
+1. IMMER per DU (Du/Dir/Dein groß) - NIEMALS per SIE
+2. IMMER in der WIR-Form sprechen ("Wir bei The Original Body...", "Unser Ansatz...")
+3. NIEMALS über Personen in dritter Person ("Justus sagt...", "Laut Armin...")
+4. NIEMALS "die Quellen" erwähnen - das THEMA steht im Vordergrund!
+5. NIEMALS Quellenangaben (Verboten: "Aus dem Report xy", "laut Transkript...")
+
+VERBOTENE WÖRTER/PHRASEN:
+- "Heilung" → stattdessen: "Gesundheit", "Regeneration"
+- "die Quellen zeigen" → VERBOTEN
+- "Justus erklärt" → stattdessen: "Wir erklären"
+- Schriftarten-Namen als Text auf Slides → NIEMALS!
+
+DESIGN-REGELN:
+6. Design erfolgt NICHT über Markdown (Keine "left over" ### am Zeilenanfang)
+7. NIEMALS Schriftarten abdrucken, Fonts immer Anwenden
+8. KEINE erfundenen Logos, Impressum oder "Letzten Seiten" mit Kontaktinformationen
+9. Verzichte auf Fotoreales Rendering
+10. Nutze IMMER die maximale Länge an Slides
+11. Sprache: Deutsch (einzelne englische Begriffe zulässig)
+12. Keine personenbezogenen Daten (Namen kürzen: Armin S., Martina F.)
+13. Visualisierungen sind positiv - KEINE Yoga/Pilates-Darstellungen
+14. "The Original Body AG" darf erwähnt werden
+15. NIEMALS Font-Namen als Text auf Slides ausgeben!
+```
+
+---
+
+## NUR ARTHROSE BLUEPRINT: VIDEO-SKRIPT ALS PRIMÄRE QUELLE
+
+**Diese Regel gilt NUR für das Arthrose Blueprint Projekt (Notebook: `be4664aa-f0d4-452c-a09e-508853c08296`).**
+
+**Dieser Block MUSS in JEDEN Slidedeck-Prompt für Arthrose Blueprint kopiert werden:**
+
+```
+WICHTIG - INHALTLICHE KORREKTHEIT:
+
+Das Video-Skript "[TITEL]" ist die EINZIGE inhaltliche Wahrheit.
+Alle anderen Quellen dienen NUR zur Visualisierung und Vertiefung.
+
+STRENGE REGELN:
+- NIEMALS Inhalte hinzufügen, die NICHT im Video-Skript stehen
+- NIEMALS eigene Interpretationen oder Schlussfolgerungen machen
+- NIEMALS Konzepte kombinieren, die im Video nicht kombiniert werden
+- Im ZWEIFEL: WEGLASSEN statt falsch darstellen
+
+Das Slidedeck VERBILDLICHT das Video-Skript - es ERFINDET nichts Neues.
 ```
 
 ---
@@ -271,21 +383,37 @@ ZWINGENDE REGELN FÜR DIESES SLIDE DECK:
 
 ```
 ZWINGENDE REGELN FÜR DIESEN PODCAST:
-1. ZIEL: Anfängern SICHERHEIT geben - sie sollen sich SICHER und WOHL fühlen
-2. Keine Hektik, kein Druck - nimm Dir Zeit für jedes Konzept
-3. Erkläre alles so, als hätte der Zuhörer NULL Vorwissen
-4. Wiederhole wichtige Punkte in anderen Worten
-5. Nutze Alltagsbeispiele und Metaphern
-6. Sprich beruhigend und ermutigend
-7. Betone: Es ist OK, wenn nicht alles sofort klar ist
-8. Gib dem Zuhörer das Gefühl, dass er/sie auf dem richtigen Weg ist
-9. Vermeide Fachjargon oder erkläre jeden Fachbegriff sofort
-10. Schließe mit einer ermutigenden Zusammenfassung
-11. Sprache: Deutsch, Du-Form (Du/Dir/Dein groß)
-12. Länge: ca. 20 Minuten Deep Dive
-13. VERBOTEN: Das Wort "Heilung" - nutze stattdessen "Gesundheit" oder "Regeneration"
-14. VERBOTEN: Über "Reports" sprechen! NIEMALS erwähnen, dass es Reports gibt!
-15. PFLICHT-EINSTIEG: Am Anfang sagen: "Du hast das Video '[VIDEO-TITEL]' geschaut und jetzt sprechen wir darüber nochmal in der Tiefe."
+
+FUNDAMENTALE SPRACHREGELN:
+1. IMMER per DU (Du/Dir/Dein groß) - NIEMALS per SIE
+2. IMMER in der WIR-Form sprechen ("Wir bei The Original Body...", "Unser Ansatz...")
+3. NIEMALS über Personen in dritter Person ("Justus sagt...", "Laut Armin...")
+4. NIEMALS "die Quellen" erwähnen - das THEMA steht im Vordergrund!
+5. NIEMALS über "Reports", "Transkripte", "Dokumente" sprechen
+
+VERBOTENE WÖRTER/PHRASEN:
+- "Heilung" → stattdessen: "Gesundheit", "Regeneration"
+- "die Quellen zeigen" → stattdessen: direkt über das Thema sprechen
+- "laut den Unterlagen" → VERBOTEN
+- "Justus erklärt" → stattdessen: "Wir erklären"
+- "The Original Body empfiehlt" → stattdessen: "Wir empfehlen"
+
+PODCAST-ZIEL:
+6. ZIEL: Anfängern SICHERHEIT geben - sie sollen sich SICHER und WOHL fühlen
+7. Keine Hektik, kein Druck - nimm Dir Zeit für jedes Konzept
+8. Erkläre alles so, als hätte der Zuhörer NULL Vorwissen
+9. Wiederhole wichtige Punkte in anderen Worten
+10. Nutze Alltagsbeispiele und Metaphern
+11. Sprich beruhigend und ermutigend
+12. Betone: Es ist OK, wenn nicht alles sofort klar ist
+13. Gib dem Zuhörer das Gefühl, dass er/sie auf dem richtigen Weg ist
+14. Vermeide Fachjargon oder erkläre jeden Fachbegriff sofort
+15. Schließe mit einer ermutigenden Zusammenfassung
+
+FORMAT:
+16. Sprache: Deutsch
+17. Länge: ca. 20 Minuten Deep Dive
+18. PFLICHT-EINSTIEG: "Du hast das Video '[VIDEO-TITEL]' geschaut und jetzt sprechen wir darüber nochmal in der Tiefe."
 ```
 
 ---
@@ -312,9 +440,11 @@ ZWINGENDE REGELN FÜR DIESEN PODCAST:
 - [ ] KEINE konkreten Slide-Anweisungen im Prompt (keine "Slide 1:")?
 - [ ] Visualisierungen für Konzepte aus dem Video?
 - [ ] **ZWINGENDE REGELN Block eingefügt?**
+- [ ] **[ARTHROSE BLUEPRINT] PRIMÄRQUELLE-Block eingefügt?**
 - [ ] Prompt in `video-X/prompts/slidedeck-prompt.md` gespeichert?
 - [ ] **`source_ids=null` bei `slide_deck_create`?** (ALLE Quellen nutzen!)
 - [ ] `length=default` bei `slide_deck_create`?
+- [ ] **[ARTHROSE BLUEPRINT] FAKTENCHECK via `notebook_query` durchgeführt?**
 
 ### Checkliste: Podcast erstellen (VERTIEFUNG - 1 PRO VIDEO!)
 - [ ] **ALLE Quellen genutzt?** (Reports, Skripte, Rohmaterial für Vertiefung)
@@ -423,3 +553,212 @@ Cmd+Option+E → "batchexecute" filtern → Cmd+R → Rechtsklick → Copy as cU
 - ID: `be4664aa-f0d4-452c-a09e-508853c08296`
 - URL: https://notebooklm.google.com/notebook/be4664aa-f0d4-452c-a09e-508853c08296
 - **Tracker:** `arthrose-blueprint/REQUEST-TRACKER.md`
+
+---
+
+## WORKSHOP-MODUS: DER WORKFLOW
+
+**Befehl:** `/workshop-session-nachbereitung`
+
+### PHASE 1: Transkript als Quelle hinzufügen
+1. User gibt Workshop-Transkript (Text)
+2. Claude fügt das Transkript via `notebook_add_text` als Quelle hinzu
+3. Bestätigung an User
+
+### PHASE 2: 5 Themen extrahieren
+4. Claude fragt NotebookLM Chat via `notebook_query`:
+   ```
+   Analysiere das Workshop-Transkript. Identifiziere die 5 RELEVANTESTEN Fragestellungen/Themen des Abends.
+
+   Für jedes Thema:
+   - Titel (prägnant, verkaufsstark)
+   - Kernfrage der Teilnehmer
+   - Warum dieses Thema für Leads wichtig ist
+
+   Kriterien:
+   - Themen die Schmerz/Problem ansprechen
+   - Themen die Hoffnung/Lösung zeigen
+   - Themen die zum Handeln motivieren
+   ```
+5. Claude dokumentiert in `workshop-[datum]/themen.md`
+
+### PHASE 3: 15 Reports erstellen (3 pro Thema)
+6. Pro Thema 3 Report-Prompts (~2000 Zeichen):
+   - **Report 1:** Grundverständnis - Was ist das Problem/Konzept?
+   - **Report 2:** Praktische Anwendung - Wie setzt man es um?
+   - **Report 3:** FAQ & Missverständnisse - Was wird oft falsch verstanden?
+7. Prompts speichern in `workshop-[datum]/prompts/thema-X/report-X-prompt.md`
+8. Reports erstellen via `report_create`
+
+### PHASE 4: User lädt Reports hoch
+9. User exportiert Reports als Google Docs
+10. User gibt Claude die URLs
+11. Claude fügt als Quellen hinzu
+
+### PHASE 5: 5 Slidedecks erstellen
+12. Pro Thema einen Slidedeck-Prompt (~2000 Zeichen):
+    - PRIMÄRQUELLEN: Die 3 Reports zum Thema
+    - SEKUNDÄRQUELLEN: Transkript + Manifest-Quellen
+    - Verkaufsorientiert aber authentisch
+13. ZWINGENDE WORKSHOP-SLIDEDECK-REGELN einfügen
+14. Slidedecks erstellen
+
+### PHASE 6: 5 Podcasts erstellen
+15. Pro Thema einen Podcast-Prompt (~2000 Zeichen):
+    - Für Leads die nicht dabei waren UND Teilnehmer
+    - Kernbotschaften verweben (siehe unten)
+16. ZWINGENDE WORKSHOP-PODCAST-REGELN einfügen
+17. Podcasts erstellen
+
+---
+
+## WORKSHOP: QUELLEN-HIERARCHIE (WICHTIG!)
+
+**PRIMÄRQUELLE (Inhalt extrahieren):**
+- Das Workshop-Transkript des jeweiligen Abends
+- Aus dieser Quelle werden die 5 Themen EXTRAHIERT
+- Der INHALT kommt aus dem Transkript
+
+**SEKUNDÄRQUELLEN (Kontext & Referenz):**
+- ALLE anderen Quellen im Notebook dienen als Referenzinformationen
+- Sie geben Kontext, Inspiration und Hintergrundwissen
+- Speziell wichtig für Ton und Philosophie:
+  - `!Summit 2025-11 -- Manifest.pdf`
+  - `!!_Das 80% Manifest - v0.5 (2).md`
+
+**Das Prinzip:**
+- EXTRAKTION aus dem Transkript (Was wurde an diesem Abend besprochen?)
+- ANREICHERUNG durch alle anderen Quellen (Wie ordnen wir es ein? Welcher Kontext?)
+- Bei `slide_deck_create` und `audio_overview_create`: IMMER `source_ids=null` → ALLE Quellen werden genutzt
+- Der `focus_prompt` steuert die PRIORITÄT auf das jeweilige Thema
+
+---
+
+## WORKSHOP: KERNBOTSCHAFTEN (IMMER VERWEBEN!)
+
+Diese Botschaften MÜSSEN in jedem Workshop-Content vorkommen:
+
+1. **Du musst SELBST arbeiten** - Niemand kann es für Dich tun
+2. **Es ist ein PROZESS** - Keine Quick-Fix-Lösung
+3. **GEMEINSAM wachsen** - Du bist nicht allein auf diesem Weg
+4. **Etwas am LEBEN ändern** - Nicht nur Übungen, sondern Lifestyle
+5. **Sich dem Prozess HINGEBEN** - Vertrauen aufbauen
+6. **Richtung SCHMERZFREIHEIT** - Das Ziel ist erreichbar
+
+---
+
+## ZWINGENDE WORKSHOP-SLIDEDECK-REGELN (IMMER KOPIEREN)
+
+**Dieser Block MUSS in JEDEN Workshop-Slidedeck-Prompt:**
+
+```
+ZWINGENDE REGELN FÜR DIESES WORKSHOP-SLIDEDECK:
+
+FUNDAMENTALE SPRACHREGELN:
+1. IMMER per DU (Du/Dir/Dein groß) - NIEMALS per SIE
+2. IMMER in der WIR-Form sprechen ("Wir bei The Original Body...", "Unser Ansatz...")
+3. NIEMALS über Personen in dritter Person ("Justus sagt...", "Laut Armin...")
+4. NIEMALS "die Quellen" erwähnen - das THEMA steht im Vordergrund!
+5. NIEMALS Quellenangaben (Verboten: "Aus dem Report xy", "laut Transkript...")
+
+VERBOTENE WÖRTER/PHRASEN:
+- "Heilung" → stattdessen: "Gesundheit", "Regeneration"
+- "die Quellen zeigen" → VERBOTEN
+- "Justus erklärt" → stattdessen: "Wir erklären"
+- Schriftarten-Namen als Text auf Slides → NIEMALS!
+
+ZIELGRUPPE & FORMAT:
+6. ZIELGRUPPE: Werbliche Audienz (Leads) - 80% Verkäufer-Mentalität!
+7. DUAL-PURPOSE: Für Leads die nicht dabei waren UND Teilnehmer
+8. Design erfolgt NICHT über Markdown (keine ### am Zeilenanfang)
+9. NIEMALS Schriftarten abdrucken, Fonts immer Anwenden
+10. KEINE erfundenen Logos, Impressum oder Kontaktseiten
+11. Maximale Slides-Länge nutzen
+12. Sprache: Deutsch
+13. Keine personenbezogenen Daten
+14. "The Original Body AG" darf erwähnt werden
+15. NIEMALS Font-Namen als Text auf Slides!
+
+KERNBOTSCHAFTEN VERWEBEN:
+- Selbstarbeit, Prozess, Gemeinschaft, Lebensänderung
+
+16. CALL-TO-ACTION: Klar machen, dass der nächste Schritt wichtig ist
+```
+
+---
+
+## ZWINGENDE WORKSHOP-PODCAST-REGELN (IMMER KOPIEREN)
+
+**Dieser Block MUSS in JEDEN Workshop-Podcast-Prompt:**
+
+```
+ZWINGENDE REGELN FÜR DIESEN WORKSHOP-PODCAST:
+
+FUNDAMENTALE SPRACHREGELN:
+1. IMMER per DU (Du/Dir/Dein groß) - NIEMALS per SIE
+2. IMMER in der WIR-Form sprechen ("Wir bei The Original Body...", "Unser Ansatz...")
+3. NIEMALS über Personen in dritter Person ("Justus sagt...", "Laut Armin...")
+4. NIEMALS "die Quellen" erwähnen - das THEMA steht im Vordergrund!
+5. NIEMALS über "Reports", "Transkripte", "Dokumente" sprechen
+
+VERBOTENE WÖRTER/PHRASEN:
+- "Heilung" → stattdessen: "Gesundheit", "Regeneration"
+- "die Quellen zeigen" → stattdessen: direkt über das Thema sprechen
+- "laut den Unterlagen" → VERBOTEN
+- "Justus erklärt" → stattdessen: "Wir erklären"
+- "The Original Body empfiehlt" → stattdessen: "Wir empfehlen"
+
+ZIELGRUPPE & FORMAT:
+6. ZIELGRUPPE: Werbliche Audienz (Leads) - authentisch aber verkaufsorientiert
+7. DUAL-PURPOSE: Für Leads die nicht dabei waren UND Teilnehmer
+8. Erkläre alles so, als hätte der Zuhörer NULL Vorwissen
+9. Nutze Alltagsbeispiele und Metaphern
+10. Sprich motivierend und aktivierend
+11. Sprache: Deutsch
+12. Länge: ca. 15-20 Minuten
+
+KERNBOTSCHAFTEN VERWEBEN:
+- Du musst SELBST arbeiten
+- Es ist ein PROZESS
+- GEMEINSAM wachsen wir
+- Etwas am LEBEN ändern
+- Sich dem Prozess HINGEBEN
+- Richtung SCHMERZFREIHEIT
+
+13. CALL-TO-ACTION: Am Ende klar machen, dass der nächste Schritt wichtig ist
+14. EINSTIEG: "Du hast vom [WORKSHOP-THEMA] gehört und willst mehr erfahren..."
+```
+
+---
+
+## WORKSHOP: Ordnerstruktur
+
+```
+arthrose-blueprint/
+├── workshop-[datum]/
+│   ├── themen.md                 # Die 5 extrahierten Themen
+│   ├── prompts/
+│   │   ├── thema-1/
+│   │   │   ├── report-1-prompt.md    # Grundverständnis
+│   │   │   ├── report-2-prompt.md    # Praktische Anwendung
+│   │   │   ├── report-3-prompt.md    # FAQ & Missverständnisse
+│   │   │   ├── slidedeck-prompt.md
+│   │   │   └── audio-prompt.md
+│   │   ├── thema-2/
+│   │   │   └── ...
+│   │   └── ...
+```
+
+---
+
+## WORKSHOP vs. VIDEO-KURS: Checkliste
+
+### Workshop-Modus Checkliste
+- [ ] Transkript als Quelle hinzugefügt?
+- [ ] 5 Themen via NotebookLM extrahiert?
+- [ ] Themen in `workshop-[datum]/themen.md` dokumentiert?
+- [ ] Pro Thema 3 Report-Prompts (~2000 Zeichen)?
+- [ ] 80% Verkäufer-Mentalität im Ton?
+- [ ] Manifest-Quellen als Sekundärquellen?
+- [ ] Kernbotschaften verwoben?
+- [ ] Call-to-Action enthalten?
